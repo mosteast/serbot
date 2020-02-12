@@ -1,7 +1,7 @@
 {
   "name": "serbot",
   "description": "serbot",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "homepage": "https://github.com/mosteast/serbot#readme",
   "repository": "github:mosteast/serbot",
   "main": "build/index.js",
