@@ -1,13 +1,13 @@
 {
-  "name": "@mosteast/serbot",
+  "name": "serbot",
   "description": "serbot",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "homepage": "https://github.com/mosteast/serbot#readme",
   "repository": "github:mosteast/serbot",
   "main": "build/index.js",
   "type": "build/index.d.ts",
   "bin": {
-    "serbot": "bin/serbot"
+    "serbot": "bin/serbot.js"
   },
   "files": [
     "build/"
