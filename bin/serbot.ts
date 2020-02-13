@@ -1,5 +1,6 @@
 #!/usr/bin/env ts-node
 
+import { N_supported_web_server, Server } from '../src/server'
 import { get_status } from '../src/status'
 import { values } from 'lodash'
 import { printer } from '@mosteast/print_helper'
@@ -42,25 +43,35 @@ require('yargs')
           describe: 'Machine level management',
         })
         .command({
-          command: 'server',
+          command: 'server <action> [types...]',
           describe: 'Web server level management',
           builder(argv) {
             return argv
-              .positional('a', {})
-              .positional('b', {})
-              .options({
-                oa: {
-                  type: 'string',
-                  default: 'DEFAULT_VALUE',
-                },
+              .positional('action', {
+                describe: 'Server action name',
+                choices: [ 'start', 'stop', 'restart' ],
               })
+              .positional('type', {
+                describe: 'Server type',
+                type: 'array',
+                default: [ N_supported_web_server.nginx ],
+                choices: values(N_supported_web_server),
+              })
+              .options({
+                // oa: {
+                //   type: 'string',
+                //   default: 'DEFAULT_VALUE',
+                // },
+              })
+          },
+          async handler(args) {
+            await Server.start_many(args.type)
+            console.log(args)
           },
         })
         .demandCommand()
     },
-    handler(args) {
-      console.log(args)
-    },
+    handler() {},
   })
   .argv
 
